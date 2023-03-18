@@ -6,11 +6,11 @@ from .models import *
 
 
 class OrderApiView(APIView):
+    """Api для отображения информации о заказах"""
     def get(self, request):
-
-
         orders = Order.objects.all()
 
+        # заказы для отображения в таблице
         orders_info = [
             {   
                 'n': n + 1,
@@ -20,7 +20,9 @@ class OrderApiView(APIView):
             } for n, order in enumerate(orders[0:13])
         ]
 
+        # аннотация для отображения на графике
         graph = orders.values('date').order_by('date').annotate(price_per_day=Sum('price_usd'))
+        # аггрегация для отображения сумаррной стоимости
         total = orders.aggregate(Sum('price_usd'))
 
         return Response({'total': total['price_usd__sum'], 'orders': orders_info, 'graph': graph})
