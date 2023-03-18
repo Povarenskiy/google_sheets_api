@@ -1,6 +1,6 @@
 from django.urls import path
-from . import views
+from .views import OrderApiView
 
 urlpatterns = [
-    path('', views.index),
+    path('', OrderApiView.as_view()),
 ]

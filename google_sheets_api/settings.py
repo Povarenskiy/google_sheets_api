@@ -10,7 +10,9 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
+from sys import platform
 from pathlib import Path
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -37,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    'corsheaders',
     'market',
 ]
 
@@ -48,7 +52,16 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware'
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.AllowAny'
+    ]
+}
+
+CORS_ORIGIN_ALLOW_ALL = True
 
 ROOT_URLCONF = 'google_sheets_api.urls'
 
@@ -71,13 +84,15 @@ TEMPLATES = [
 WSGI_APPLICATION = 'google_sheets_api.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'postgres',
+        'USER': 'postgres',
+        'PASSWORD': 'postgres',
+        'HOST': 'db-1',
+        'PORT': '5432',
     }
 }
 
@@ -123,8 +138,12 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# Токен и id телеграмм канала для отправки уведомлений 
+BOT_TOKEN = "6185915865:AAGlF-Xpmp9Lps9hE8MpCrr5C8SHEcRJeeA"
+CHAT_ID = '-880217985'
 
-from sys import platform
+DOC = '13LcpN3xNXU0AGf9YI07CLy-DO3FDv3p9EO5VJpDJlHY'
+SHEET = 'Лист1'
 
 REDIS_HOST = 'localhost' if platform == 'win32' else 'redis'
 REDIS_PORT = '6379'

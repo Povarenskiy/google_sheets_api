@@ -15,4 +15,6 @@ class Order(models.Model):
        
 
 class ExchangeRate(models.Model):
-    value = models.FloatField()
+    """Модель курса валют"""
+    exchange = models.CharField(max_length=55)
+    rate = models.FloatField()
