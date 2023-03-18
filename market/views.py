@@ -22,7 +22,7 @@ class OrderApiView(APIView):
 
         # аннотация для отображения на графике
         graph = orders.values('date').order_by('date').annotate(price_per_day=Sum('price_usd'))
-        # агрегация для отображения сумаррной стоимости
+        # агрегация для отображения суммаррной стоимости
         total = orders.aggregate(Sum('price_usd'))
 
         return Response({'total': total['price_usd__sum'], 'orders': orders_info, 'graph': graph})
