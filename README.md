@@ -9,7 +9,7 @@
 
 ## Установка и запуск
 
-Клонировать репозиторий с Github.com, перейти внутрь проекта  
+Клонировать репозиторий с Github.com, перейти в директорию проекта  
 ````
 git clone https://github.com/Povarenskiy/google_sheets_api.git
 cd google_sheets_api
