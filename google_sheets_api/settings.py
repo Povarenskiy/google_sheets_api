@@ -139,11 +139,12 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Токен и id телеграмм канала для отправки уведомлений 
-BOT_TOKEN = "6185915865:AAGlF-Xpmp9Lps9hE8MpCrr5C8SHEcRJeeA"
-CHAT_ID = '-880217985'
+BOT_TOKEN = ""
+CHAT_ID = ''
 
 DOC = '13LcpN3xNXU0AGf9YI07CLy-DO3FDv3p9EO5VJpDJlHY'
 SHEET = 'Лист1'
+AUTH_JSON = ''
 
 REDIS_HOST = 'localhost' if platform == 'win32' else 'redis'
 REDIS_PORT = '6379'
